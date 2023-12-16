@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation';
 import db from '@wa/prisma';
+import { Header } from '@wa/common-ui';
 
 type Props = {
   params: {
@@ -22,7 +23,7 @@ export default async function OfferPage({ params: { id } }: Props) {
 
   return (
     <div>
-      <h1>{offer.title}</h1>
+      <Header>{offer.title}</Header>
       <p>{offer.description}</p>
     </div>
   );
