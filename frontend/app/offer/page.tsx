@@ -1,4 +1,5 @@
 import db from '@wa/prisma';
+import Link from 'next/link';
 
 // import { revalidatePath } from 'next/cache';
 // revalidatePath('/offer');
@@ -14,7 +15,9 @@ export default async function Offer() {
       <ul>
         {offers.map((offer) => (
           <li key={offer.id}>
-            {offer.title} - {offer.description}
+            <Link href={`/offer/${offer.id}`}>
+              {offer.title} - {offer.description}
+            </Link>
           </li>
         ))}
       </ul>
