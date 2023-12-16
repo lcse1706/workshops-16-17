@@ -1,5 +1,8 @@
 import db from '@wa/prisma';
 
+// import { revalidatePath } from 'next/cache';
+// revalidatePath('/offer');
+
 export default async function Offer() {
   const offers = await db.jobOffer.findMany({
     orderBy: { created_at: 'desc' },
