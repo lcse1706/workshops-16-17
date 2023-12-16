@@ -4,6 +4,7 @@ import { Button, Input } from '@wa/common-ui';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
+import { api } from '../../config/api';
 
 const validationSchema = z
   .object({
@@ -46,6 +47,7 @@ export const AddOfferForm = () => {
 
   const sendForm: SubmitHandler<FormValues> = (data) => {
     console.log(data);
+    api.post('/api/offers', data);
     // TODO: send data to backend
     // /api/offer
   };
