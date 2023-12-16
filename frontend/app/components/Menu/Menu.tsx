@@ -1,3 +1,4 @@
+import { UserButton } from '@clerk/nextjs';
 import Link from 'next/link';
 
 export const Menu = () => {
@@ -22,6 +23,9 @@ export const Menu = () => {
         </li>
         <li className="mr-4">
           <Link href="/offer/add">Create offer</Link>
+        </li>
+        <li className="w-auto right">
+          <UserButton afterSignOutUrl="/" />
         </li>
       </ul>
     </div>
