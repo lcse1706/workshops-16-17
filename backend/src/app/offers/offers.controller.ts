@@ -4,14 +4,12 @@ import {
   Get,
   HttpException,
   HttpStatus,
-  NotFoundException,
   Param,
   Patch,
   Post,
 } from '@nestjs/common';
 import { OffersService } from './offers.service';
-import { off } from 'process';
-import { CreateCompanyDto } from './dtos/CreateCompany.dto';
+import { CreateCompanyDto } from './dto/CreateCompany.dto';
 
 @Controller('offers') // http://localhost:3000/api/offers
 export class OffersController {
@@ -41,6 +39,8 @@ export class OffersController {
   async activateOffer(@Param('id') id: string) {
     try {
       await this.offersService.activateOffer(id);
+      console.log('I am here');
+
       return { status: 'ok' };
     } catch {
       throw new HttpException('Offer not found', HttpStatus.NOT_FOUND);
