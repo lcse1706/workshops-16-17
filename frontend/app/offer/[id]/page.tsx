@@ -9,6 +9,7 @@ type Props = {
 };
 
 export default async function OfferPage({ params: { id } }: Props) {
+  // throw new Error('Oh no!');
   if (!id) {
     notFound();
   }

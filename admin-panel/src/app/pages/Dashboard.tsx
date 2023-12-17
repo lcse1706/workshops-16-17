@@ -4,6 +4,7 @@ import { offersList, activateOffer } from '../services/offers';
 import { MouseEvent } from 'react';
 
 export const DashboardPage = () => {
+  // throw new Error('Oh no!');
   const { data, isLoading, isError, refetch } = useQuery({
     queryKey: ['dashboard'],
     queryFn: offersList,
