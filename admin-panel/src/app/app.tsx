@@ -1,6 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import styles from './app.module.scss';
-
 import { Route, Routes, Link } from 'react-router-dom';
 import { DashboardPage } from './pages/Dashboard';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';

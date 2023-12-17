@@ -17,4 +17,11 @@ export class OffersService {
       where: { id },
     });
   }
+
+  activateOffer(id: string) {
+    return this.db.jobOffer.update({
+      where: { id },
+      data: { is_active: true },
+    });
+  }
 }
