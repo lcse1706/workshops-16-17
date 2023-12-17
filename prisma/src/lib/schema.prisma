@@ -2,19 +2,30 @@ generator client {
   provider = "prisma-client-js"
 }
 
+generator zod {
+  provider = "zod-prisma-types"
+}
+
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
+enum CURRENCY {
+  EUR
+  USD
+  PLN
+}
+
 model JobOffer {
-  id          String   @id @default(uuid())
-  title       String
-  description String
-  company     String?
-  location    String?
-  salary_from Int
-  salary_to   Int
-  created_at  DateTime @default(now())
-  updated_at  DateTime @updatedAt
+  id              String   @id @default(uuid())
+  title           String
+  description     String
+  company         String?
+  location        String?
+  salary_from     Int
+  salary_to       Int
+  salary_currency CURRENCY @default(PLN)
+  created_at      DateTime @default(now())
+  updated_at      DateTime @updatedAt
 }
