@@ -37,12 +37,6 @@
         }
       }
     },
-    "serve-static": {
-      "executor": "@nx/web:file-server",
-      "options": {
-        "buildTarget": "frontend:build"
-      }
-    },
     "export": {
       "executor": "@nx/next:export",
       "options": {
