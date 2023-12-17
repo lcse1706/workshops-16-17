@@ -1,4 +1,5 @@
 import {
+  Body,
   Controller,
   Get,
   HttpException,
@@ -6,9 +7,11 @@ import {
   NotFoundException,
   Param,
   Patch,
+  Post,
 } from '@nestjs/common';
 import { OffersService } from './offers.service';
 import { off } from 'process';
+import { CreateCompanyDto } from './dtos/CreateCompany.dto';
 
 @Controller('offers') // http://localhost:3000/api/offers
 export class OffersController {
@@ -42,5 +45,11 @@ export class OffersController {
     } catch {
       throw new HttpException('Offer not found', HttpStatus.NOT_FOUND);
     }
+  }
+
+  @Post('company')
+  createCompany(@Body() company: CreateCompanyDto) {
+    // console.log({ company });
+    return { company };
   }
 }
