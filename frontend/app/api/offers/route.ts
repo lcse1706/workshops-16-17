@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import db from '@wa/prisma';
+import { revalidatePath } from 'next/cache';
 
 type FormValues = {
   title: string;
@@ -23,6 +24,8 @@ export async function POST(request: Request) {
     },
   });
   console.log({ data, offer });
+
+  revalidatePath('/offer');
 
   return NextResponse.json(offer);
 }

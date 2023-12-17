@@ -5,8 +5,10 @@ import { useForm, type SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { toast } from 'react-toastify';
+import { useRouter } from 'next/navigation';
 
 import { api } from '../../config/api';
+import { useTransition } from 'react';
 
 const validationSchema = z
   .object({
@@ -46,19 +48,25 @@ export const AddOfferForm = () => {
   } = useForm<FormValues>({
     resolver: zodResolver(validationSchema),
   });
+  const router = useRouter();
+  const [isPending, startTransition] = useTransition();
 
   const sendForm: SubmitHandler<FormValues> = async (data) => {
     console.log(data);
     try {
       await api.post('/api/offers', data);
       toast.success('Offer was added successfully 🎉');
-    } catch {
+      startTransition(() => router.push('/offer'));
+      startTransition(() => router.refresh());
+    } catch (e) {
+      console.error('Error: ', e);
       toast.error('Something went wrong 😥');
     }
   };
 
   return (
     <form onSubmit={handleSubmit(sendForm)}>
+      {isPending && <p>Loading...</p>}
       <Input label="Title" {...register('title')} error={errors.title} />
       <Input
         label="Description"
