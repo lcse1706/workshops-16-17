@@ -7,7 +7,9 @@ import Link from 'next/link';
 
 export default async function Offer() {
   const offers = await db.jobOffer.findMany({
+    where: { is_active: true },
     orderBy: { created_at: 'desc' },
+    include: { company: true },
   });
 
   return (
@@ -19,6 +21,7 @@ export default async function Offer() {
             <Link href={`/offer/${offer.id}`} className="text-xl">
               {offer.title}
             </Link>
+            <p>{offer.company?.name}</p>
             <p>{offer.description}</p>
           </li>
         ))}
