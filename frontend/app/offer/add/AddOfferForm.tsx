@@ -8,7 +8,7 @@ import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
 
 import { api } from '../../config/api';
-import { useTransition } from 'react';
+import { useRef, useTransition } from 'react';
 
 const validationSchema = z
   .object({
@@ -50,8 +50,12 @@ export const AddOfferForm = () => {
   });
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
+  const submitButtonRef = useRef<HTMLButtonElement>(null);
 
   const sendForm: SubmitHandler<FormValues> = async (data) => {
+    if (submitButtonRef.current) {
+      submitButtonRef.current.disabled = true;
+    }
     console.log(data);
     try {
       await api.post('/api/offers', data);
@@ -97,7 +101,12 @@ export const AddOfferForm = () => {
           className="w-1/2"
         />
       </div>
-      <Button label="Submit" type="submit" />
+      <Button
+        ref={submitButtonRef}
+        label="Submit"
+        type="submit"
+        disabled={isPending}
+      />
     </form>
   );
 };
