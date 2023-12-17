@@ -41,7 +41,8 @@
     "serve-static": {
       "executor": "@nx/web:file-server",
       "options": {
-        "buildTarget": "admin-panel:build"
+        "buildTarget": "admin-panel:build",
+        "port": 4800
       }
     },
     "preview": {
