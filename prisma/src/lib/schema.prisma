@@ -17,15 +17,24 @@ enum CURRENCY {
   PLN
 }
 
+model Company {
+  id          String     @id @default(uuid())
+  name        String
+  description String?
+  job_offers  JobOffer[]
+}
+
 model JobOffer {
   id              String   @id @default(uuid())
   title           String
   description     String
-  company         String?
   location        String?
   salary_from     Int
   salary_to       Int
+  is_active       Boolean  @default(false)
   salary_currency CURRENCY @default(PLN)
   created_at      DateTime @default(now())
   updated_at      DateTime @updatedAt
+  company         Company? @relation(fields: [companyId], references: [id])
+  companyId       String?
 }
