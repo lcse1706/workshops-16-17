@@ -4,6 +4,9 @@
   "license": "MIT",
   "scripts": {},
   "private": true,
+  "engines": {
+    "node": ">=20.10.0"
+  },
   "dependencies": {
     "@clerk/nextjs": "^4.28.1",
     "@hookform/resolvers": "^3.3.2",
