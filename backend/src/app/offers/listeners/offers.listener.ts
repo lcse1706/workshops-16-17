@@ -3,9 +3,9 @@ import { OnEvent } from '@nestjs/event-emitter';
 import { OfferActivatedEvent } from '../events/offer-activated.event';
 
 @Injectable()
-export class OfferActivatedListener {
+export class OfferListener {
   @OnEvent('offer.activated')
-  handleOrderCreatedEvent(event: OfferActivatedEvent) {
+  handleOfferActivatedEvent(event: OfferActivatedEvent) {
     // handle and process "OfferActivatedEvent" event
     console.log(event);
   }

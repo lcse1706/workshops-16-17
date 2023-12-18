@@ -24,12 +24,12 @@
       "executor": "@nx/vite:dev-server",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "admin-panel:build",
-        "port": 4800
+        "buildTarget": "admin-panel:build"
       },
       "configurations": {
         "development": {
           "buildTarget": "admin-panel:build:development",
+          "port": 4800,
           "hmr": true
         },
         "production": {

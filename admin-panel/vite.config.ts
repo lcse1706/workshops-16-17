@@ -6,9 +6,14 @@ import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 export default defineConfig({
   cacheDir: '../node_modules/.vite/admin-panel',
 
+  // https://docs.railway.app/guides/fixing-common-errors
+  // When you deploy and expose a web application on Railway,
+  // we expect your web server to be available at host 0.0.0.0
+  // and a port that we provide in the form of a PORT variable.
+  // The PORT variable is automatically injected by Railway into your application's environment.
   server: {
-    port: 4200,
-    host: 'localhost',
+    port: process.env.PORT ? +process.env.PORT : 4200,
+    host: '0.0.0.0',
   },
 
   preview: {
