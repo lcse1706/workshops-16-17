@@ -1,27 +1,89 @@
 # Web Amigos Job Board
 
-It's workshops project which uses 3 applications (React, Next.js, NestJS) and few libraries like common-ui and prisma.
+It's workshops project which uses 3 applications:
+
+- Admin Panel (`React`),
+- Frontend for visitors (`Next.js`),
+- Backend `NestJS`
+  and few libraries like `common-ui` and `prisma`.
 
 ![Simplified structure](./docs/wa-jobboard.jpg 'a title')
 
 ## Demo:
 
+You can check working applications using below links:
+
 - [Frontend (Next.js)](https://workshops-16-17-production.up.railway.app/)
 - [Admin Panel (React)](https://admin-panel-production-3ed0.up.railway.app/)
-- [Backend](https://backend-production-df90.up.railway.app/api)
+- [Backend (NestJS)](https://backend-production-df90.up.railway.app/api)
 
-## Frontend
+### Env variables
 
-### Application
+Each application has it's own env variables set but in most cases DATABASE_URL is needed to connect to database from `frontend` and `backend` applications.
 
-Run `npx nx serve frontend` and open browser at http://localhost:4200
+Create `.env.local` files as below:
+
+```
+- admin-panel
+ | - env.local
+- backend
+ | - env.local
+- frontend
+ | - env.local
+- prisma
+ | - env.local
+```
+
+Content for each file is described in sections below.
+
+### Local development
+
+Below are described command for each application but you need database (Postgres) and initial structure
+
+To create initial structure make sure that you have `DATABASE_URL` inside `prisma/.env.local` and then run command:
+
+`npx nx run prisma:migrate-deploy`
+
+This will read migrations from `prisma/migrations` and will apply to your database.
+
+### Using Docker
+
+Inside root directory you can find `docker-compose.yml` file with basic configuration. To run local database you can enter:
+
+`docker compose up`
+
+then set your `DATABASE_URL=postgresql://postgres:pass123@localhost:5432/jobboard` in `.env.local` files inside `admin-panel`, `frontend`, `backend` and `prisma` directories.
+
+Now it's time to make initial structure:
+
+`npx nx run prisma:migrate-deploy`
+
+That's all! Happy programming 🎉
+
+Note: Prisma may occur an error if you place your database connection string inside quotes (`"`)
+
+### Deployment
+
+Each application (`admin-panel`, `frontend`, `backend`) has it's own build and deployment setup which you can find in `railway.toml` files
+
+## Frontend App
+
+Role of this application is to make public gateway for visitors to create new Job Offer. Only accepted job offers are visible (offer can be accepted only via Admin Panel).
 
 ### Env variables (.env.local or on your server)
+
+You can place .env.local inside `frontend` directory
 
 `DATABASE_URL` - url string to your database
 
 `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` - you will get this in your Clerk.com account
 `CLERK_SECRET_KEY` - you will get this in your Clerk.com account
+
+### Commands
+
+#### Serve
+
+Run `npx nx serve frontend` and open browser at http://localhost:4200
 
 ### Storybook
 
@@ -33,11 +95,13 @@ Run `npx nx storybook frontend` and open browser at http://localhost:4400/
 
 Run `npx nx storybook common-ui` and open browser at http://localhost:4600/
 
-## Admin Panel
+## Admin Panel App
 
 Run `npx nx serve admin-panel` and open browser at http://localhost:4800/
 
 ### Env variables (.env.local or on your server)
+
+You can place .env.local inside `admin-panel` directory
 
 `VITE_API_BASE_URL` - URL to the backend e.g:
 
@@ -45,15 +109,27 @@ Run `npx nx serve admin-panel` and open browser at http://localhost:4800/
 VITE_API_BASE_URL="http://localhost:3000/api"
 ```
 
-## Backend
-
-Run `npx nx serve backend` and server will listen to requests at http://localhost:3000/api
+## Backend App
 
 ### Env variables (.env.local or on your server)
 
+You can place .env.local inside `backend` directory
+
 `DATABASE_URL` - url string to your database
 
+### Commands
+
+Run `npx nx serve backend` and server will listen to requests at http://localhost:3000/api
+
 ## Prisma
+
+### Env variables (.env.local or on your server)
+
+You can place .env.local inside `prisma` directory
+
+`DATABASE_URL` - url string to your database
+
+### Commands
 
 Run `npx nx run prisma:generate-types` to generate types
 
@@ -62,10 +138,6 @@ To run migrations in interactive mode you can change directory to: prisma/src/li
 `prisma migrate dev --name NAME_OF_YOUR_MIGRATION`
 
 To open prisma studio, you can run `npx nx run prisma:studio`
-
-### Env variables (.env.local or on your server)
-
-`DATABASE_URL` - url string to your database
 
 ---
 
