@@ -1,18 +1,30 @@
 # Web Amigos Job Board
 
-Frontend:
+## Frontend
 
-`npx nx serve frontend`
+### Application
 
-Open browser: http://localhost:4200
+Run `npx nx serve frontend` and open browser at http://localhost:4200
 
-`npx nx storybook frontend`
+### Storybook
 
-Open browser http://localhost:4400/
+Run `npx nx storybook frontend` and open browser at http://localhost:4400/
 
-`npx nx storybook common-ui`
+## Common UI library
 
-Open browser http://localhost:4600/
+### Storybook
+
+Run `npx nx storybook common-ui` and open browser at http://localhost:4600/
+
+## Admin Panel
+
+Run `npx nx serve admin-panel` and open browser at http://localhost:4800/
+
+## Backend
+
+Run `npx nx serve backend` and server will listen to requests at http://localhost:3000/api
+
+---
 
 <a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
 
