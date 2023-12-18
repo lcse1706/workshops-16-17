@@ -5,6 +5,8 @@ watchPatterns = ["/backend"]
 
 [deploy]
 startCommand = "npx nx run prisma:migrate-deploy && npx nx run backend:serve:production"
-healthcheckPath = "/api/health"
-healthcheckTimeout = 300
+
+# Remember thay tou need to have endpoints deployed before start using below healthchecks
+#healthcheckPath = "/api/health"
+#healthcheckTimeout = 300
 restartPolicyType = "ON_FAILURE"
