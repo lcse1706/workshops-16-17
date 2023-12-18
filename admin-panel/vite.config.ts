@@ -16,6 +16,7 @@ export default defineConfig({
     host: '0.0.0.0',
   },
 
+  // do not use this in production
   preview: {
     port: 4300,
     host: 'localhost',
