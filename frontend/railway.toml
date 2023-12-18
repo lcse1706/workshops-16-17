@@ -5,6 +5,6 @@ watchPatterns = ["/frontend"]
 
 [deploy]
 startCommand = "npx nx run prisma:migrate-deploy && npx nx run frontend:serve:production"
-healthcheckPath = "/api/hello"
+healthcheckPath = "/api/health"
 healthcheckTimeout = 300
 restartPolicyType = "ON_FAILURE"

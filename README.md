@@ -1,10 +1,21 @@
 # Web Amigos Job Board
 
+It's workshops project which uses 3 applications (React, Next.js, NestJS) and few libraries like common-ui and prisma.
+
+![Simplified structure](./docs/wa-jobboard.jpg 'a title')
+
 ## Frontend
 
 ### Application
 
 Run `npx nx serve frontend` and open browser at http://localhost:4200
+
+### Env variables (.env.local or on your server)
+
+`DATABASE_URL` - url string to your database
+
+`NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` - you will get this in your Clerk.com account
+`CLERK_SECRET_KEY` - you will get this in your Clerk.com account
 
 ### Storybook
 
@@ -20,9 +31,35 @@ Run `npx nx storybook common-ui` and open browser at http://localhost:4600/
 
 Run `npx nx serve admin-panel` and open browser at http://localhost:4800/
 
+### Env variables (.env.local or on your server)
+
+`VITE_API_BASE_URL` - URL to the backend e.g:
+
+```sh
+VITE_API_BASE_URL="http://localhost:3000/api"
+```
+
 ## Backend
 
 Run `npx nx serve backend` and server will listen to requests at http://localhost:3000/api
+
+### Env variables (.env.local or on your server)
+
+`DATABASE_URL` - url string to your database
+
+## Prisma
+
+Run `npx nx run prisma:generate-types` to generate types
+
+To run migrations in interactive mode you can change directory to: prisma/src/lib/, export DATABASE_URL variable (see below) and run:
+
+`prisma migrate dev --name NAME_OF_YOUR_MIGRATION`
+
+To open prisma studio, you can run `npx nx run prisma:studio`
+
+### Env variables (.env.local or on your server)
+
+`DATABASE_URL` - url string to your database
 
 ---
 
