@@ -4,6 +4,12 @@ It's workshops project which uses 3 applications (React, Next.js, NestJS) and fe
 
 ![Simplified structure](./docs/wa-jobboard.jpg 'a title')
 
+## Demo:
+
+- [Frontend (Next.js)](https://workshops-16-17-production.up.railway.app/)
+- [Admin Panel (React)](https://admin-panel-production-3ed0.up.railway.app/)
+- [Backend](https://backend-production-df90.up.railway.app/api)
+
 ## Frontend
 
 ### Application
