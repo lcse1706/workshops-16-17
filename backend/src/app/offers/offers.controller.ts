@@ -8,6 +8,7 @@ import {
   Patch,
   Post,
 } from '@nestjs/common';
+import { JobOffer } from '@wa/prisma';
 import { OffersService } from './offers.service';
 import { CreateCompanyDto } from './dto/CreateCompany.dto';
 
@@ -24,7 +25,7 @@ export class OffersController {
   }
 
   @Get(':id') // (GET) http://localhost:3000/api/offers/1
-  async offerDetails(@Param('id') id: string) {
+  async offerDetails(@Param('id') id: string): Promise<JobOffer> {
     const offer = await this.offersService.getOfferById(id);
 
     if (!offer) {
