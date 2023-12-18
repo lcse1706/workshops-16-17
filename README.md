@@ -46,6 +46,10 @@ To create initial structure make sure that you have `DATABASE_URL` inside `prism
 
 This will read migrations from `prisma/migrations` and will apply to your database.
 
+To feed database with initial values run:
+
+`npx nx run prisma:seed`
+
 ### Using Docker
 
 Inside root directory you can find `docker-compose.yml` file with basic configuration. To run local database you can enter:
@@ -57,6 +61,10 @@ then set your `DATABASE_URL=postgresql://postgres:pass123@localhost:5432/jobboar
 Now it's time to make initial structure:
 
 `npx nx run prisma:migrate-deploy`
+
+To feed database with initial values run:
+
+`npx nx run prisma:seed`
 
 That's all! Happy programming 🎉
 

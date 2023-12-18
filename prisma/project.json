@@ -22,6 +22,14 @@
         "cwd": "prisma/src/lib"
       }
     },
+
+    "seed": {
+      "command": "ts-node ./seed.ts",
+      "options": {
+        "cwd": "prisma/src/lib"
+      }
+    },
+
     "migrate-dev": {
       "command": "prisma migrate dev",
       "options": {
